@@ -43,13 +43,18 @@ public class Draw {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     for (Drawing d: shapes) {
+      Thread.sleep(1000);
       d.translate(-5, 7);
+      System.out.println("translate -5, 7");
       Thread.sleep(1000);
       d.rotate(-45);
+      System.out.println("rotate -45");
       Thread.sleep(1000);
       d.rotate(90);
+      System.out.println("rotate 90");
       Thread.sleep(1000);
       d.scale(2, 0.5);
+      System.out.println("scale 2, 0.5");
       Thread.sleep(1000);
     }
   }

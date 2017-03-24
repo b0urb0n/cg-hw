@@ -3,6 +3,7 @@ package miller.shapes;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
@@ -18,8 +19,8 @@ public class Drawing extends JPanel{
   
   private int translateX = 0;
   private int translateY = 0;
-  private double scaleX = 1;
-  private double scaleY = 1;
+  private double scaleX = 1.0;
+  private double scaleY = 1.0;
   private double rotation = 0;
 
   public Drawing(Shape shape) {
@@ -47,10 +48,19 @@ public class Drawing extends JPanel{
     int x = (this.getWidth() - canvas.getWidth(null)) / 2;
     int y = (this.getHeight() - canvas.getHeight(null)) / 2;
 
-    g2.rotate(rotation, x, y);
-    g2.scale(scaleX, scaleY);
-    g2.translate(translateX, translateY);
-    
+    double zoomX = getWidth() * scaleX;
+    double zoomY = getHeight() * scaleY;
+
+    double anchorX = (getWidth() - zoomX) / 2.0;
+    double anchorY = (getHeight() - zoomY) / 2.0;
+
+    AffineTransform at = new AffineTransform();
+    at.translate(anchorX, anchorY);
+    at.scale(scaleX, scaleY);
+    at.rotate(rotation, x, y);
+    at.translate(translateX, translateY);
+
+    g2.setTransform(at);    
     g2.drawImage(canvas, x, y, null);
     g2.dispose();
   }
