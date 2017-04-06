@@ -22,13 +22,13 @@ public class Draw {
     s.setAction(new TranslationAction () {
       @Override
       public void run() {
-        if (s.translateX < -4 || s.translateX > 4) {
+        if (s.getTranslateX() < -4 || s.getTranslateX() > 4) {
           s.setTranslateDeltaX(s.getTranslateDeltaX() * -1);;
         }
-        if (s.translateY < -3 || s.translateY > 3) {
+        if (s.getTranslateY() < -3 || s.getTranslateY() > 3) {
           s.setTranslateDeltaY(s.getTranslateDeltaY() * -1);;
         }
-        if (s.translateZ < -20 || s.translateZ > -10) {
+        if (s.getTranslateZ() < -20 || s.getTranslateZ() > -10) {
           s.setTranslateDeltaZ(s.getTranslateDeltaZ() * -1);;
         }
       }

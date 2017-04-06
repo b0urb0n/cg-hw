@@ -13,9 +13,9 @@ public class Square extends Shape {
   public void draw(GL2 gl) {
     gl.glLoadIdentity();
     
-    gl.glTranslatef(translateX, translateY, translateZ);
-    gl.glRotatef(rotateAngle, rotateX, rotateY, rotateZ);
-    gl.glScalef(scaleX, scaleY, scaleZ);
+    gl.glTranslatef(getTranslateX(), getTranslateY(), getTranslateZ());
+    gl.glRotatef(getRotateAngle(), getRotateX(), getRotateY(), getRotateZ());
+    gl.glScalef(getScaleX(), getScaleY(), getScaleZ());
     
     gl.glBegin(GL2.GL_QUADS);
     gl.glColor3f(1f, 0f, 0f); // red

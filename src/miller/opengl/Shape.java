@@ -5,22 +5,22 @@ import com.jogamp.opengl.GL2;
 public class Shape {
   private TranslationAction action;
   
-  protected float scaleX = 1.0f;
-  protected float scaleY = 1.0f;
-  protected float scaleZ = 1.0f;
+  private float scaleX = 1.0f;
+  private float scaleY = 1.0f;
+  private float scaleZ = 1.0f;
   private float scaleDeltaX = 0.0f;
   private float scaleDeltaY = 0.0f;
   private float scaleDeltaZ = 0.0f;
 
-  protected float rotateAngle = 0.0f;
+  private float rotateAngle = 0.0f;
   private float rotateAngleDelta = 0.0f;
-  protected float rotateX = 1.0f;
-  protected float rotateY = 1.0f;
-  protected float rotateZ = 1.0f;
+  private float rotateX = 1.0f;
+  private float rotateY = 1.0f;
+  private float rotateZ = 1.0f;
   
-  protected float translateX = 0.0f;
-  protected float translateY = 0.0f;
-  protected float translateZ = 0.0f;
+  private float translateX = 0.0f;
+  private float translateY = 0.0f;
+  private float translateZ = 0.0f;
   private float translateDeltaX = 0.0f;
   private float translateDeltaY = 0.0f;
   private float translateDeltaZ = 0.0f;
@@ -123,5 +123,85 @@ public class Shape {
 
   public void setTranslateDeltaZ(float translateDeltaZ) {
     this.translateDeltaZ = translateDeltaZ;
+  }
+
+  public float getScaleX() {
+    return scaleX;
+  }
+
+  public void setScaleX(float scaleX) {
+    this.scaleX = scaleX;
+  }
+
+  public float getScaleY() {
+    return scaleY;
+  }
+
+  public void setScaleY(float scaleY) {
+    this.scaleY = scaleY;
+  }
+
+  public float getScaleZ() {
+    return scaleZ;
+  }
+
+  public void setScaleZ(float scaleZ) {
+    this.scaleZ = scaleZ;
+  }
+
+  public float getRotateAngle() {
+    return rotateAngle;
+  }
+
+  public void setRotateAngle(float rotateAngle) {
+    this.rotateAngle = rotateAngle;
+  }
+
+  public float getRotateX() {
+    return rotateX;
+  }
+
+  public void setRotateX(float rotateX) {
+    this.rotateX = rotateX;
+  }
+
+  public float getRotateY() {
+    return rotateY;
+  }
+
+  public void setRotateY(float rotateY) {
+    this.rotateY = rotateY;
+  }
+
+  public float getRotateZ() {
+    return rotateZ;
+  }
+
+  public void setRotateZ(float rotateZ) {
+    this.rotateZ = rotateZ;
+  }
+
+  public float getTranslateX() {
+    return translateX;
+  }
+
+  public void setTranslateX(float translateX) {
+    this.translateX = translateX;
+  }
+
+  public float getTranslateY() {
+    return translateY;
+  }
+
+  public void setTranslateY(float translateY) {
+    this.translateY = translateY;
+  }
+
+  public float getTranslateZ() {
+    return translateZ;
+  }
+
+  public void setTranslateZ(float translateZ) {
+    this.translateZ = translateZ;
   }
 }
