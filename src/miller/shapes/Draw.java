@@ -35,7 +35,7 @@ public class Draw {
     mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
     mainPanel.add(panel, Container.CENTER_ALIGNMENT);
     
-    frame.setMinimumSize(new Dimension(100, 300));
+    frame.setMinimumSize(new Dimension(100, 200));
     frame.add(mainPanel);
     frame.pack();
     frame.setVisible(true);
@@ -55,7 +55,6 @@ public class Draw {
       Thread.sleep(1000);
       d.scale(2, 0.5);
       System.out.println("scale 2, 0.5");
-      Thread.sleep(1000);
     }
   }
 }
