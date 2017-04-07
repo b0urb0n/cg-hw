@@ -16,10 +16,10 @@ public class Draw {
     final GLCanvas glcanvas = new GLCanvas(capabilities);
     Drawing drawing = new Drawing();
   
-    s = new Square(-4f, 2f, -10f);
+    s = new Triangle(-4f, 2f, -10f);
     s.setTranslation(0.05f, -0.05f, 0.1f);
     s.setRotation(-1f);
-    s.setAction(new TranslationAction () {
+    s.setAction(new RenderAction () {
       @Override
       public void run() {
         if (s.getTranslateX() < -4 || s.getTranslateX() > 4) {

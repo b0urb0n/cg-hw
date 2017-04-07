@@ -3,59 +3,74 @@ package miller.opengl;
 import com.jogamp.opengl.GL2;
 
 public class Square extends Shape {
-  int faceType = GL2.GL_QUADS;
+  private static final int FACE_TYPE = GL2.GL_QUADS;
   
-  public Square(float x, float y, float z) {
-    super(x, y, z);
+  public Square () {
+    super(FACE_TYPE);
+    initFaces();
   }
   
-  @Override
-  public void draw(GL2 gl) {
-    gl.glLoadIdentity();
+  public Square (float x, float y, float z) {
+    super(FACE_TYPE, x, y, z);
+    initFaces();
+  }
+  
+  public Square (float x, float y, float z, Face[] faces) {
+    super(FACE_TYPE, x, y, z);
+    setFaces(faces);
+  }
+  
+  public void initFaces () {
+    Face[] faces = new Face[6];
     
-    gl.glTranslatef(getTranslateX(), getTranslateY(), getTranslateZ());
-    gl.glRotatef(getRotateAngle(), getRotateX(), getRotateY(), getRotateZ());
-    gl.glScalef(getScaleX(), getScaleY(), getScaleZ());
+    Color c = new Color(1f, 0f, 0f); // red
+    Point[] ps = new Point[4]; // 4 points to a quad
+    ps[0] = new Point(1f, 1f, -1f);
+    ps[1] = new Point(-1f, 1f, -1f);
+    ps[2] = new Point(-1f, 1f, 1f);
+    ps[3] = new Point(1f, 1f, 1f);
+    faces[0] = new Face(ps, c);
     
-    gl.glBegin(GL2.GL_QUADS);
-    gl.glColor3f(1f, 0f, 0f); // red
-    gl.glVertex3f(1.0f, 1.0f, -1.0f);
-    gl.glVertex3f(-1.0f, 1.0f, -1.0f);
-    gl.glVertex3f(-1.0f, 1.0f, 1.0f);
-    gl.glVertex3f(1.0f, 1.0f, 1.0f);
+    c = new Color(0f, 1f, 0f); // green
+    ps = new Point[4];
+    ps[0] = new Point(1f, -1f, 1f);
+    ps[1] = new Point(-1f, -1f, 1f);
+    ps[2] = new Point(-1f, -1f, -1f);
+    ps[3] = new Point(1f, -1f, -1f);
+    faces[1] = new Face(ps, c);
 
-    gl.glColor3f(0f, 1f, 0f); // green
-    gl.glVertex3f(1.0f, -1.0f, 1.0f);
-    gl.glVertex3f(-1.0f, -1.0f, 1.0f);
-    gl.glVertex3f(-1.0f, -1.0f, -1.0f);
-    gl.glVertex3f(1.0f, -1.0f, -1.0f);
+    c = new Color(0f, 0f, 1f); // blue
+    ps = new Point[4];
+    ps[0] = new Point(1f, 1f, 1f);
+    ps[1] = new Point(-1f, 1f, 1f);
+    ps[2] = new Point(-1f, -1f, 1f);
+    ps[3] = new Point(1f, -1f, 1f);
+    faces[2] = new Face(ps, c);
 
-    gl.glColor3f(0f, 0f, 1f); // blue
-    gl.glVertex3f(1.0f, 1.0f, 1.0f);
-    gl.glVertex3f(-1.0f, 1.0f, 1.0f);
-    gl.glVertex3f(-1.0f, -1.0f, 1.0f);
-    gl.glVertex3f(1.0f, -1.0f, 1.0f);
+    c = new Color(1f, 1f, 0f); // yellow
+    ps = new Point[4];
+    ps[0] = new Point(1f, -1f, -1f);
+    ps[1] = new Point(-1f, -1f, -1f);
+    ps[2] = new Point(-1f, 1f, -1f);
+    ps[3] = new Point(1f, 1f, -1f);
+    faces[3] = new Face(ps, c);
 
-    gl.glColor3f(1f, 1f, 0f); // yellow
-    gl.glVertex3f(1.0f, -1.0f, -1.0f);
-    gl.glVertex3f(-1.0f, -1.0f, -1.0f);
-    gl.glVertex3f(-1.0f, 1.0f, -1.0f);
-    gl.glVertex3f(1.0f, 1.0f, -1.0f);
+    c = new Color(1f, 0f, 1f); // purple
+    ps = new Point[4];
+    ps[0] = new Point(-1f, 1f, 1f);
+    ps[1] = new Point(-1f, 1f, -1f);
+    ps[2] = new Point(-1f, -1f, -1f);
+    ps[3] = new Point(-1f, -1f, 1f);
+    faces[4] = new Face(ps, c);
 
-    gl.glColor3f(1f, 0f, 1f); // purple
-    gl.glVertex3f(-1.0f, 1.0f, 1.0f);
-    gl.glVertex3f(-1.0f, 1.0f, -1.0f);
-    gl.glVertex3f(-1.0f, -1.0f, -1.0f);
-    gl.glVertex3f(-1.0f, -1.0f, 1.0f);
-
-    gl.glColor3f(1f, 1f, 1f); // white
-    gl.glVertex3f(1.0f, 1.0f, -1.0f);
-    gl.glVertex3f(1.0f, 1.0f, 1.0f);
-    gl.glVertex3f(1.0f, -1.0f, 1.0f);
-    gl.glVertex3f(1.0f, -1.0f, -1.0f);
-    gl.glEnd();
-
-    updateTransforms();
-    getAction().run();
+    c = new Color(1f, 1f, 1f); // white
+    ps = new Point[4];
+    ps[0] = new Point(1f, 1f, -1f);
+    ps[1] = new Point(1f, 1f, 1f);
+    ps[2] = new Point(1f, -1f, 1f);
+    ps[3] = new Point(1f, -1f, -1f);
+    faces[5] = new Face(ps, c);
+    
+    setFaces(faces);
   }
 }

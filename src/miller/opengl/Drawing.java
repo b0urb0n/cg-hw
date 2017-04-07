@@ -14,7 +14,7 @@ public class Drawing implements GLEventListener {
   public ArrayList<Shape> shapes = new ArrayList<Shape>();
   
   @Override
-  public void display(GLAutoDrawable drawable) {
+  public void display (GLAutoDrawable drawable) {
     final GL2 gl = drawable.getGL().getGL2();
     
     gl.glClear(GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT);
@@ -27,10 +27,10 @@ public class Drawing implements GLEventListener {
   }
 
   @Override
-  public void dispose(GLAutoDrawable drawable) {}
+  public void dispose (GLAutoDrawable drawable) {}
 
   @Override
-  public void init(GLAutoDrawable drawable) {
+  public void init (GLAutoDrawable drawable) {
     final GL2 gl = drawable.getGL().getGL2();
     
     gl.glShadeModel(GL2.GL_SMOOTH);
@@ -42,7 +42,7 @@ public class Drawing implements GLEventListener {
   }
 
   @Override
-  public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+  public void reshape (GLAutoDrawable drawable, int x, int y, int width, int height) {
     final GL2 gl = drawable.getGL().getGL2();
     
     if (height <= 0) {
