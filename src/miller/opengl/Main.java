@@ -43,6 +43,7 @@ public class Main {
     contentPane.add(glcanvas);
     contentPane.add(menu);
     
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.pack();
     frame.setVisible(true);
     final FPSAnimator animator = new FPSAnimator(glcanvas, 300, true);

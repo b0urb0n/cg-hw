@@ -147,11 +147,11 @@ public class Shape {
     translateDeltaZ = z;
   }
 
-  public RenderAction getAction() {
+  public RenderAction getRenderAction() {
     return renderAction;
   }
 
-  public void setAction(RenderAction action) {
+  public void setRenderAction(RenderAction action) {
     this.renderAction = action;
   }
 

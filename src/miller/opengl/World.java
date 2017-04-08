@@ -9,9 +9,15 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.glu.GLU;
 
+import miller.opengl.shapes.Color;
+import miller.opengl.shapes.Cone;
+import miller.opengl.shapes.Cylinder;
+import miller.opengl.shapes.Pyramid;
 import miller.opengl.shapes.RenderAction;
 import miller.opengl.shapes.Shape;
+import miller.opengl.shapes.Sphere;
 import miller.opengl.shapes.Square;
+import miller.opengl.shapes.Tetrahedron;
 
 public class World implements GLEventListener, KeyListener {
   private static final float FOV = 45f;
@@ -19,12 +25,10 @@ public class World implements GLEventListener, KeyListener {
   private GLU glu = new GLU();
   public ArrayList<Shape> shapes = new ArrayList<Shape>();
   
-//  private Player player = new Player();
-  
   public World () {
     RenderAction ra = new RenderAction() {
       @Override
-      public void run(Shape s) {
+      public void run(Shape s) { // generic RenderAction to keep shapes within the viewport
         if (s.getTranslateX() < -4 || s.getTranslateX() > 4)
           s.setTranslateDeltaX(s.getTranslateDeltaX() * -1);;
         if (s.getTranslateY() < -3 || s.getTranslateY() > 3)
@@ -36,46 +40,49 @@ public class World implements GLEventListener, KeyListener {
       }
     };
     
-    Shape shape = new Square(-4f, 2f, -10f);
+    Shape shape = new Tetrahedron(-4f, 2f, -10f);
     shape.setTranslation(0.05f, -0.05f, 0.1f);
     shape.setRotation(-1f);
     shape.setScaleDelta(0.05f);
-    shape.setAction(ra);
+    shape.setRenderAction(ra);
+    shapes.add(shape);
+
+    shape = new Pyramid(0f, 2f, -10f);
+    shape.setTranslation(0.05f, -0.05f, 0.1f);
+    shape.setRotation(-1f);
+    shape.setScaleDelta(0.05f);
+    shape.setRenderAction(ra);
     shapes.add(shape);
     
-    shape = new Square(0f, 2f, -10f);
-    shape.setTranslation(0.01f, -0.1f, 0.17f);
-    shape.setRotation(-1.5f);
-    shape.setScaleDelta(0.01f);
-    shape.setAction(ra);
-    shapes.add(shape);
-
     shape = new Square(4f, 2f, -10f);
-    shape.setTranslation(0.03f, -0.01f, 0.2f);
-    shape.setRotation(-1.2f);
-    shape.setScaleDelta(0.03f);
-    shape.setAction(ra);
+    shape.setTranslation(0.05f, -0.05f, 0.1f);
+    shape.setRotation(-1f);
+    shape.setScaleDelta(0.05f);
+    shape.setRenderAction(ra);
     shapes.add(shape);
 
-    shape = new Square(-4f, -2f, -10f);
+    shape = new Sphere(-4f, -2f, -10f);
+    ((Sphere) shape).setColor(new Color(0f, 0f, 1f));
     shape.setTranslation(0.01f, -0.02f, 0.3f);
     shape.setRotation(-3f);
     shape.setScaleDelta(0.02f);
-    shape.setAction(ra);
+    shape.setRenderAction(ra);
     shapes.add(shape);
 
-    shape = new Square(0f, -2f, -10f);
+    shape = new Cylinder(0f, -2f, -10f);
+    ((Cylinder) shape).setColor(new Color(1f, 0f, 0f));
     shape.setTranslation(0.03f, -0.02f, 0.1f);
     shape.setRotation(-2f);
     shape.setScaleDelta(0.02f);
-    shape.setAction(ra);
+    shape.setRenderAction(ra);
     shapes.add(shape);
 
-    shape = new Square(4f, -2f, -10f);
-    shape.setTranslation(0.03f, -0.03f, 0.3f);
-    shape.setRotation(-1.8f);
-    shape.setScaleDelta(0.01f);
-    shape.setAction(ra);
+    shape = new Cone(4f, -2f, -10f);
+    ((Cone) shape).setColor(new Color(0f, 1f, 0f));
+    shape.setTranslation(0.03f, -0.02f, 0.1f);
+    shape.setRotation(-2f);
+    shape.setScaleDelta(0.02f);
+    shape.setRenderAction(ra);
     shapes.add(shape);
   }
   
