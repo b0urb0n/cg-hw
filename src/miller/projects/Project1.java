@@ -1,3 +1,5 @@
+package miller.projects;
+
 import miller.shapes.Draw;
 
 public class Project1 {
