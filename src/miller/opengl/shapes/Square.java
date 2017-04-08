@@ -1,4 +1,4 @@
-package miller.opengl;
+package miller.opengl.shapes;
 
 import com.jogamp.opengl.GL2;
 

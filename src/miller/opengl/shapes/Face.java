@@ -1,4 +1,4 @@
-package miller.opengl;
+package miller.opengl.shapes;
 
 public class Face {
   private Point[] points;

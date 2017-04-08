@@ -1,4 +1,4 @@
-package miller.opengl;
+package miller.opengl.shapes;
 
 public class Color {
   private float r = 1f;

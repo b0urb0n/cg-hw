@@ -1,4 +1,4 @@
-package miller.opengl;
+package miller.opengl.shapes;
 
 public class Point {
   private float x, y, z;
