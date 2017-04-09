@@ -1,7 +1,5 @@
 package miller.opengl;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import com.jogamp.opengl.GL2;
@@ -19,7 +17,7 @@ import miller.opengl.shapes.Sphere;
 import miller.opengl.shapes.Square;
 import miller.opengl.shapes.Tetrahedron;
 
-public class World implements GLEventListener, KeyListener {
+public class World implements GLEventListener {
   private static final float FOV = 45f;
   
   private GLU glu = new GLU();
@@ -131,23 +129,5 @@ public class World implements GLEventListener, KeyListener {
     glu.gluPerspective(FOV, ar, 1.0, 30.0);
     gl.glMatrixMode(GL2.GL_MODELVIEW);
     gl.glLoadIdentity();
-  }
-
-  @Override
-  public void keyPressed(KeyEvent arg0) {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  public void keyReleased(KeyEvent arg0) {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  public void keyTyped(KeyEvent arg0) {
-    // TODO Auto-generated method stub
-    
   }
 }
