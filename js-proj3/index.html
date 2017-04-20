@@ -1,0 +1,132 @@
+<html>
+  <head>
+    <title>Matthew Miller - Project 3</title>
+  <head>
+  <body>
+    <script src="lib/three.min.js"></script>
+    <script src="lib/OrbitControls.js"></script>
+
+    <script>
+      var menu = document.createElement("div");
+      var rotX = document.createElement("input");
+      var rotY = document.createElement("input");
+      var rotZ = document.createElement("input");
+      var rotAnimate = document.createElement("input");
+      rotX.name = "rotationSliderX";
+      rotY.name = "rotationSliderY";
+      rotZ.name = "rotationSliderZ";
+      rotAnimate.name = "rotationAnimate";
+      rotAnimate.type = "checkbox";
+      var rotArr = [rotX, rotY, rotZ];
+      
+      for (var i = 0; i < rotArr.length; i++) {
+        rotArr[i].type = "range";
+        rotArr[i].value = 0;
+        rotArr[i].min = 0;
+        rotArr[i].max = Math.PI * 2;
+        rotArr[i].step = 0.025;
+      }
+ 
+      menu.appendChild(document.createTextNode("Rotate: "));
+      menu.appendChild(document.createTextNode("Animate: "));
+      menu.appendChild(rotAnimate);
+      menu.appendChild(document.createTextNode("X: "));
+      menu.appendChild(rotX);
+      menu.appendChild(document.createTextNode("Y: "));
+      menu.appendChild(rotY);
+      menu.appendChild(document.createTextNode("Z: "));
+      menu.appendChild(rotZ);
+ 
+      // end menu; start Three
+    
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      var renderer = new THREE.WebGLRenderer();
+      
+      renderer.setSize(640, 480);
+      document.body.appendChild(renderer.domElement);
+      document.body.appendChild(menu);
+
+      var lights = [];
+			lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
+			lights[ 1 ] = new THREE.PointLight( 0xff0000, 1, 0 );
+			lights[ 2 ] = new THREE.PointLight( 0x0000ff, 1, 0 );
+
+			lights[ 0 ].position.set( 0, 0, 0 );
+			lights[ 1 ].position.set( 0, 100, 0 );
+			lights[ 2 ].position.set( 0, -100, 0 );
+
+			scene.add( lights[ 0 ] );
+			scene.add( lights[ 1 ] );
+			scene.add( lights[ 2 ] );
+
+      var geo = new THREE.BoxGeometry(1, 1, 1);
+      var mat = new THREE.MeshStandardMaterial({color: 0x00ff00});
+      var cube = new THREE.Mesh(geo, mat);
+      cube.position.x = -2;
+      cube.position.y = 2;
+      scene.add(cube);
+
+      geo = new THREE.ConeGeometry(0.5, 1, 30);
+      mat = new THREE.MeshStandardMaterial({color: 0xff0000});
+      var cone = new THREE.Mesh(geo, mat);
+      cone.position.y = 2;
+      scene.add(cone);      
+      
+      geo = new THREE.CylinderGeometry(0.5, 0.5, 1, 30);
+      mat = new THREE.MeshStandardMaterial({color: 0x0000ff});
+      var cyl = new THREE.Mesh(geo, mat);
+      cyl.position.x = 2;
+      cyl.position.y = 2;
+      scene.add(cyl);      
+
+      geo = new THREE.TorusGeometry(0.5, 0.2, 10, 30);
+      mat = new THREE.MeshStandardMaterial({color: 0xff00ff});
+      var ring = new THREE.Mesh(geo, mat);
+      ring.position.x = -2;
+      ring.position.y = -2;
+      scene.add(ring);      
+
+      geo = new THREE.TorusKnotGeometry(0.5, 0.15, 300, 100);
+      mat = new THREE.MeshStandardMaterial({color: 0x00ffff});
+      var knot = new THREE.Mesh(geo, mat);
+      knot.position.y = -2;
+      scene.add(knot);      
+
+      geo = new THREE.DodecahedronGeometry(0.5);
+      mat = new THREE.MeshStandardMaterial({color: 0xffff00});
+      var dod = new THREE.Mesh(geo, mat);
+      dod.position.x = 2;
+      dod.position.y = -2;
+      scene.add(dod);      
+     
+      var shapes = [cube, cone, cyl, ring, knot, dod];
+
+      camera.position.z = 5;
+
+      controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+      function render() {
+        requestAnimationFrame(render);
+
+        if (rotAnimate.checked){
+          for (var i = 0; i < shapes.length; i++) {
+            shapes[i].rotateX(0.01);
+            shapes[i].rotateY(0.01);
+            shapes[i].rotateZ(0.01);
+          }
+        } else {
+          for (var i = 0; i < shapes.length; i++) {
+            shapes[i].rotation.x = rotX.value;
+            shapes[i].rotation.y = rotY.value;
+            shapes[i].rotation.z = rotZ.value;
+          }
+        }
+
+        renderer.render(scene, camera);
+      }
+      
+      render();
+    </script>
+  </body>
+</html>
